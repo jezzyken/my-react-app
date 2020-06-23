@@ -5,19 +5,16 @@ class Loginpage extends React.Component {
     super();
 
     this.state = {
-      username: "ken",
-      password: "password",
+      username: "",
+      password: "",
     };
   }
 
-  handleChange = (event) => {
-    this.setState({ username: event.target.value });
-  };
-
   getUsername = (event) => {
+    event.preventDefault();
+
     const { username, password } = this.state;
 
-    event.preventDefault();
     if (username !== "ken" && password !== "password") {
       alert("Incorrect Username");
     } else {
@@ -34,12 +31,19 @@ class Loginpage extends React.Component {
             <input
               type="text"
               placeholder="Username"
-              value={this.state.username}
-              onChange={this.handleChange}
+              onChange={(event) =>
+                this.setState({ username: event.target.value })
+              }
             />
           </div>
           <div className="form-control">
-            <input type="password" placeholder="Password" />
+            <input
+              type="text"
+              placeholder="Password"
+              onChange={(event) =>
+                this.setState({ password: event.target.value })
+              }
+            />
           </div>
           <div className="form-control">
             <button onClick={this.getUsername}>Login</button>
