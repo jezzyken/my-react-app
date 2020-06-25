@@ -1,20 +1,19 @@
 import React from "react";
 import "./App.css";
 
-import { Switch, Route } from "react-router-dom";
-
-import WelcomePage from "./WelcomePage";
-
-import LoginPage from "./LoginPage";
-
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Switch>
-          <Route exact path="/" component={LoginPage} />
-          <Route path="/welcomePage/:name" component={WelcomePage} />
-        </Switch>
+        <h1>MY TODO LIST</h1>
+        <input type="text" />
+        <button>Add Todo</button>
+
+        <ul className="list-group">
+          <li className="list-item">Test</li>
+          <li className="list-item">Test</li>
+          <li className="list-item">Test</li>
+        </ul>
       </div>
     );
   }

@@ -2,12 +2,16 @@
   text-align: center;
 }
 
-.form-group {
-  padding: 20px 20px;
-  display: flex;
-  flex-direction: column;
+.list-group {
+  display: block;
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
+  width: 300px;
+  margin: auto;
 }
 
-.form-control:not(:first-child) {
-  margin-top: 10px;
+.list-item {
+  border: 2px solid black;
+  margin: 20px 0;
 }
