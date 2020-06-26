@@ -20,12 +20,29 @@ class App extends React.Component {
 
   addTodo = () => {
     const todos = this.state.todos;
+    const todoId = this.state.todos.length - 1;
 
     const newTodo = {
       todo: this.state.newTodo,
-      id: todos[todos.length - 1].id + 1,
+      id: todoId,
     };
+
     todos.push(newTodo);
+    this.setState({ todos });
+
+    if (todoId.length < 0) {
+      return todoId.id + 1;
+    }
+    return 1;
+  };
+
+  editTodo = () => {
+    alert("Edit");
+  };
+
+  deleteTodo = (index) => {
+    const todos = this.state.todos;
+    delete todos[index];
     this.setState({ todos });
   };
 
@@ -40,13 +57,21 @@ class App extends React.Component {
         />
         <button onClick={this.addTodo}>Add Todo</button>
 
-        <ul className="list-group">
-          {this.state.todos.map((todo) => (
-            <li className="list-item" key={todo.id}>
-              {todo.todo}
-            </li>
-          ))}
-        </ul>
+        {this.state.todos.map((todo, index) => (
+          <div className="container" key={todo.id}>
+            <div className="list-wrapper">
+              <ul className="list-group">
+                <li className="list-item">{todo.todo}</li>
+              </ul>
+            </div>
+            <div className="action-wrapper">
+              <div className="item-action">
+                <span onClick={this.editTodo}>edit</span>
+                <span onClick={() => this.deleteTodo(index)}>delete</span>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     );
   }
