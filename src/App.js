@@ -10,6 +10,7 @@ class App extends React.Component {
       newTodo: "",
       isEditing: false,
       editingIndex: null,
+      notification: null,
       todos: [
         { id: 1, todo: "sleeping" },
         { id: 2, todo: "eating" },
@@ -32,6 +33,8 @@ class App extends React.Component {
 
     todos.push(newTodo);
     this.setState({ todos });
+
+    this.alert("Todo Successfully Added");
   };
 
   editTodo = (index) => {
@@ -47,6 +50,8 @@ class App extends React.Component {
     const todos = this.state.todos;
     delete todos[index];
     this.setState({ todos });
+
+    this.alert("Todo Successfully Deleted");
   };
 
   updateTodo = () => {
@@ -62,6 +67,8 @@ class App extends React.Component {
       isEditing: false,
       editingIndex: null,
     });
+
+    this.alert("Todo Successfully Updated");
   };
 
   generateTodoId = () => {
@@ -72,6 +79,16 @@ class App extends React.Component {
     }
     return 1;
   };
+
+  alert(notification) {
+    this.setState({
+      notification: notification,
+    });
+
+    setTimeout(() => {
+      this.setState({ notification: null });
+    }, 1000);
+  }
 
   render() {
     return (
@@ -86,9 +103,13 @@ class App extends React.Component {
           {this.state.isEditing ? "Update Todo" : "Add Todo"}
         </button>
 
+        {this.state.notification && (
+          <div className="notification">{this.state.notification}</div>
+        )}
+
         {!this.state.isEditing &&
           this.state.todos.map((todo, index) => (
-              <TodoList
+            <TodoList
               key={index}
               todo={todo.todo}
               editTodo={() => this.editTodo(index)}
