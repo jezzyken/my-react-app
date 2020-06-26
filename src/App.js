@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 
+import TodoList from "./todo-list.component";
+
 class App extends React.Component {
   constructor() {
     super();
@@ -86,19 +88,12 @@ class App extends React.Component {
 
         {!this.state.isEditing &&
           this.state.todos.map((todo, index) => (
-            <div className="container" key={todo.id}>
-              <div className="list-wrapper">
-                <ul className="list-group">
-                  <li className="list-item">{todo.todo}</li>
-                </ul>
-              </div>
-              <div className="action-wrapper">
-                <div className="item-action">
-                  <span onClick={() => this.editTodo(index)}>edit</span>
-                  <span onClick={() => this.deleteTodo(index)}>delete</span>
-                </div>
-              </div>
-            </div>
+              <TodoList
+              key={index}
+              todo={todo.todo}
+              editTodo={() => this.editTodo(index)}
+              deleteTodo={() => this.deleteTodo(index)}
+            />
           ))}
       </div>
     );
